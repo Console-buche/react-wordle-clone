@@ -4,7 +4,7 @@ import { bounce } from "../style/animations";
 import Letter from "./Letter";
 
 interface ILetter {
-  word: string;
+  letter: string;
 }
 
 const StyledSquare = styled("div", {
@@ -26,8 +26,8 @@ const StyledSquare = styled("div", {
 
 function Square(props: ILetter) {
   return (
-    <StyledSquare isActive={!!props.word}>
-      <Letter word={props.word} />
+    <StyledSquare isActive={!!props.letter}>
+      <Letter letter={props.letter} />
     </StyledSquare>
   );
 }

@@ -2,7 +2,7 @@ import { styled } from "@stitches/react";
 import * as React from "react";
 
 interface ILetter {
-  word: string;
+  letter: string;
 }
 
 const StyledLetter = styled("div", {
@@ -13,7 +13,7 @@ const StyledLetter = styled("div", {
 });
 
 function Letter(props: ILetter) {
-  return <StyledLetter>{props.word}</StyledLetter>;
+  return <StyledLetter>{props.letter}</StyledLetter>;
 }
 
 export default Letter;

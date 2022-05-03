@@ -14,9 +14,9 @@ const StyledRow = styled("div", {
 });
 
 function Row(props: IRow) {
-  const { word } = React.useContext(WordleContext);
+  const { word, secretWord } = React.useContext(WordleContext);
 
-  const getWord = (index: number) => {
+  const getLetter = (index: number) => {
     if (props.isActive) {
       return word[index];
     }
@@ -26,8 +26,8 @@ function Row(props: IRow) {
 
   return (
     <StyledRow>
-      {Array.from(Array(5).keys()).map((_, index) => (
-        <Square word={getWord(index)} />
+      {Array.from(Array(secretWord.length).keys()).map((letterPosition) => (
+        <Square letter={getLetter(letterPosition)} />
       ))}
     </StyledRow>
   );
