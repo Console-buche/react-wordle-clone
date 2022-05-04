@@ -4,6 +4,8 @@ import { handlePressEnter } from "./handlePressEnter";
 import { handlePressLetter } from "./handlePressLetter";
 
 export const wordReducer = (prevWord: string, key: string) => {
+  if (!/^[a-z]+$/i.test(key)) return prevWord;
+
   switch (key) {
     case "Backspace":
       return handlePressBackspace(prevWord);

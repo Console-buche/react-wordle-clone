@@ -1,5 +1,6 @@
 import { styled } from "@stitches/react";
 import React from "react";
+import AlertBox from "./components/AlertBox";
 import Grid from "./components/Grid";
 import { initialState, WordleContext } from "./context/wordleContext";
 import { wordReducer } from "./handlers/wordReducer";
@@ -28,6 +29,7 @@ function App() {
     <WordleContext.Provider value={{ ...initialState, word }}>
       <Container>
         <Grid />
+        <AlertBox />
       </Container>
     </WordleContext.Provider>
   );
