@@ -1,19 +1,22 @@
-import { initialState } from "../context/wordleContext";
+import { initialState, TWordWithError } from "../context/wordleContext";
 import { handlePressBackspace } from "./handlePressBackspace";
 import { handlePressEnter } from "./handlePressEnter";
 import { handlePressLetter } from "./handlePressLetter";
 
-export const wordReducer = (prevWord: string, key: string) => {
-  if (!/^[a-z]+$/i.test(key)) return prevWord;
+export const wordReducer = (
+  state: TWordWithError,
+  key: string
+): TWordWithError => {
+  if (!/^[a-z]+$/i.test(key)) return { word: state.word };
 
   switch (key) {
     case "Backspace":
-      return handlePressBackspace(prevWord);
+      return handlePressBackspace(state.word);
     case "Enter":
-      return handlePressEnter(prevWord, initialState.secretWord);
+      return handlePressEnter(state.word, initialState.secretWord);
     default:
       return handlePressLetter(
-        prevWord,
+        state.word,
         key,
         initialState.secretWord.length + 1
       );

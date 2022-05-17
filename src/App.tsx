@@ -15,10 +15,13 @@ const Container = styled("div", {
 });
 
 function App() {
-  const [word, setWord] = React.useReducer(wordReducer, "");
+  const [wordWitherror, setWordWithError] = React.useReducer(
+    wordReducer,
+    initialState.wordWithError
+  );
 
   React.useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => setWord(event.key);
+    const handleKeyDown = (event: KeyboardEvent) => setWordWithError(event.key);
 
     document.addEventListener("keydown", handleKeyDown);
 
@@ -26,7 +29,15 @@ function App() {
   }, []);
 
   return (
-    <WordleContext.Provider value={{ ...initialState, word }}>
+    <WordleContext.Provider
+      value={{
+        ...initialState,
+        wordWithError: {
+          word: wordWitherror.word,
+          errorMessage: wordWitherror.errorMessage,
+        },
+      }}
+    >
       <Container>
         <Grid />
         <AlertBox />

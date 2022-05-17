@@ -15,7 +15,7 @@ const StyledAlert = styled("div", {
   padding: "17px 20px",
   borderRadius: "5px",
   animation: `${fade} 0.25s forwards`,
-  animationDelay: "0.75s",
+  animationDelay: "1.75s",
 });
 
 function Alert(props: IAlertProps) {

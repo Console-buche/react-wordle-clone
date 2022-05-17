@@ -1,12 +1,14 @@
-export const handlePressEnter = (word: string, compareWord: string) => {
+import { TWordWithError } from "../context/wordleContext";
+
+export const handlePressEnter = (
+  word: string,
+  compareWord: string
+): TWordWithError => {
   if (word.length < compareWord.length) {
-    console.log("mot trop court");
-    return word;
+    return { word, errorMessage: "mot trop court" };
   }
   if (word !== compareWord) {
-    console.log("nope, trompé");
-    return word;
+    return { word, errorMessage: "nope, trompé" };
   }
-  console.log("bravo t'as trouvé", word);
-  return word;
+  return { word };
 };

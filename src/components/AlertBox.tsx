@@ -2,6 +2,7 @@ import { styled } from "@stitches/react";
 import * as React from "react";
 import Alert from "./Alert";
 import { v4 } from "uuid";
+import { WordleContext } from "../context/wordleContext";
 
 export interface IAlertBoxProps {}
 
@@ -23,19 +24,23 @@ type TAlert = {
 function AlertBox(props: IAlertBoxProps) {
   const [alerts, setAlerts] = React.useState<TAlert[]>([]);
 
+  const {
+    wordWithError: { errorMessage },
+  } = React.useContext(WordleContext);
+
   React.useEffect(() => {
     const handlePressEnter = (event: KeyboardEvent) => {
-      if (event.key === "Enter")
+      if (event.key === "Enter" && errorMessage)
         setAlerts((prevAlerts) => [
           ...prevAlerts,
-          { message: "Test de Julien", id: v4() },
+          { message: errorMessage, id: v4() },
         ]);
     };
 
     document.addEventListener("keydown", handlePressEnter);
 
     return () => document.removeEventListener("keydown", handlePressEnter);
-  }, []);
+  }, [errorMessage]);
 
   return (
     <StyledAlertBox>
@@ -46,7 +51,7 @@ function AlertBox(props: IAlertBoxProps) {
               setAlerts((prevAlerts) =>
                 prevAlerts.filter((thisAlert) => thisAlert.id !== alert.id)
               );
-            }, 1000)
+            }, 2000)
           }
           key={alert.id}
           message={alert.message}

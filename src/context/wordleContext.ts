@@ -1,7 +1,20 @@
 import * as React from "react";
 
-export const initialState = {
-  word: "",
+export type TWordWithError = {
+  word: string;
+  errorMessage?: string;
+};
+
+interface IInitialState {
+  wordWithError: TWordWithError;
+  secretWord: string;
+}
+
+export const initialState: IInitialState = {
+  wordWithError: {
+    word: "",
+    errorMessage: "",
+  },
   secretWord: "hello",
 };
 
